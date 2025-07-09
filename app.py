@@ -26,7 +26,7 @@ if st.button("🔍 Predict Digit"):
     if processed is not None:
         label, conf, all_preds = predict_single_digit(
             processed,
-            model_path="model/model_params.pkl",
+            model_path="model_params_stored_mnist.pk1",
             hidden_layers=[256, 64],
             output_size=10
         )
