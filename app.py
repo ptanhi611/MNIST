@@ -4,7 +4,7 @@ import streamlit as st
 import numpy as np
 from PIL import Image
 
-from frontend.canvas import get_digit_from_canvas
+from canvas import get_digit_from_canvas
 from predict_single import predict_single_digit
 
 def preprocess_canvas(img):
@@ -27,7 +27,7 @@ if st.button("🔍 Predict Digit"):
         label, conf, all_preds = predict_single_digit(
             processed,
             model_path="model/model_params.pkl",
-            hidden_layers=[128, 64],
+            hidden_layers=[256, 64],
             output_size=10
         )
         st.success(f"Predicted: {label} with {conf*100:.2f}% confidence")
