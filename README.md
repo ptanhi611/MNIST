@@ -6,7 +6,7 @@ A fully functional handwritten digit recognition system built **from scratch usi
 
 ## 🚀 Demo
 
-<img src="https://i.imgur.com/PLbhW9j.gif" width="600"/>
+You can try the live demo of the app here: [Streamlit Demo](https://bkxtarctfbsgcxyqzdk9vt.streamlit.app/#draw-a-digit-below)
 
 Draw a digit using your trackpad or touchscreen and the model predicts it instantly.
 
@@ -27,7 +27,7 @@ Draw a digit using your trackpad or touchscreen and the model predicts it instan
 Your neural network architecture (example used):
 ```
 Input (28x28 = 784) →
-  Dense (128) + ReLU →
+  Dense (256) + ReLU →
   Dense (64)  + ReLU →
   Dense (10)  + Softmax
 ```
@@ -120,16 +120,9 @@ The interactive app makes it usable, testable, and fun to play with!
 
 ---
 
-## 📷 Screenshots
-
-<img src="https://i.imgur.com/npX9v1E.png" width="500" />
-<img src="https://i.imgur.com/jV6OpTu.png" width="500" />
-
----
-
 ## 📬 Contact / Suggestions
 
-Feel free to raise issues or suggest improvements by opening an issue or PR.
+r.personal.837643@gmail.com
 
 ---
 
@@ -141,5 +134,3 @@ Feel free to raise issues or suggest improvements by opening an issue or PR.
 
 
 ---
-
-
