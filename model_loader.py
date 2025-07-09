@@ -1,5 +1,5 @@
 import pickle
-from nn_from_scratch_core.layers import Layer
+from model import Layer
 
 def load_model(hidden_layers,input_size,output_size,filename):
     layer_size=[input_size]+hidden_layers+[output_size]
