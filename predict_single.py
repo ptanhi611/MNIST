@@ -1,8 +1,8 @@
 # model/predict_single.py
 
 import numpy as np
-from model.model_loader import load_model
-from model.layers import Activation_ReLU, Activation_Softmax
+from model_loader import load_model
+from model import Activation_ReLU, Activation_Softmax
 
 def predict_single_digit(image_vector, model_path, hidden_layers, output_size):
     input_size = image_vector.shape[1]
