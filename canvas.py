@@ -1,4 +1,3 @@
-
 from streamlit_drawable_canvas import st_canvas
 import streamlit as st
 import numpy as np
@@ -22,32 +21,30 @@ def get_digit_from_canvas():
         # Convert to grayscale
         img = Image.fromarray((canvas_result.image_data[:, :, 0:3]).astype(np.uint8)).convert("L")
 
-        # Invert (black on white → white on black)
+        # Invert to get white digit on black background
         img = ImageOps.invert(img)
 
-        # Crop the digit using bounding box
+        # Crop to content
         bbox = img.getbbox()
         if bbox:
             img = img.crop(bbox)
 
-        # Add padding to make it square
+        # Pad to square
         max_side = max(img.size)
-        padded_img = Image.new("L", (max_side, max_side), 0)
-        offset = ((max_side - img.size[0]) // 2, (max_side - img.size[1]) // 2)
-        padded_img.paste(img, offset)
+        square_img = Image.new("L", (max_side, max_side), 0)
+        square_img.paste(img, ((max_side - img.size[0]) // 2, (max_side - img.size[1]) // 2))
 
-        # Resize to MNIST size
-        img = padded_img.resize((28, 28), Image.LANCZOS)
+        # Resize to MNIST dimensions
+        img = square_img.resize((28, 28), Image.LANCZOS)
 
-        # Normalize
-        img = np.array(img).astype(np.float32)
-        img = img / 255.0
-        img = img.reshape(1, -1)
+        # Convert to numpy and binarize faint strokes
+        img = np.array(img).astype(np.uint8)
+        img = np.where(img > 30, 255, 0).astype(np.uint8)
 
-        # Standardize (mean 0, std 1)
-        mean = img.mean()
-        std = img.std() if img.std() > 0 else 1
-        img = (img - mean) / std
+        # Normalize using fixed MNIST stats
+        img = img.astype(np.float32) / 255.0
+        img = (img - 0.1307) / 0.3081
 
-        return img
+        return img.reshape(1, -1)
+
     return None
