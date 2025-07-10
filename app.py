@@ -10,7 +10,7 @@ def preprocess_canvas(img):
     if img is None:
         return None
 
-    img = Image.fromarray((255 - img[:, :, 0]).astype('uint8'))  # Grayscale
+    img = Image.fromarray((255 - img).astype('uint8'))  # Grayscale
     img = img.resize((28, 28))
     img = np.array(img).astype('float32') / 255.0
     return img.reshape(1, 784)
